@@ -1,10 +1,19 @@
 from django.db import models
+from django.contrib.auth.models import User
+from users.models import Profile
+""" Post models.
+"""
+class Post(models.Model):
+    """[summary]
+    
+    Arguments:
+        models {[type]} -- [description]
+    """
 
-class User(models.Model):
-    email = models.EmailField(unique=True)
-    password = models.CharField(max_length=100)
-    first_name = models.CharField(max_length=100)
-    last_name = models.CharField(max_length=100)
-    is_admin = models.BooleanField(default=False)
-    created = models.DateTimeField(auto_now_add=True)
-    modified = models.DateTimeField(auto_now=True)
+    title = models.CharField(max_length = 255)
+    photo = models.ImageField(upload_to = 'post/photos')
+    created = models.DateTimeField(auto_now_add = True)
+    modified = models.DateTimeField(auto_now = True)
+
+    user = models.ForeignKey(User, on_delete = models.CASCADE)
+    profile = models.ForeignKey(Profile, on_delete = models.CASCADE)

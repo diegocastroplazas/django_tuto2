@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.urls import path
 from platzigram import views as local_views
 from posts import views as post_views
-
+from users import views as users_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -26,4 +26,5 @@ urlpatterns = [
     path('hi/<str:name>/<int:age>', local_views.say_hi),
     path('posts/', post_views.list_posts),
     path('feed_posts/', post_views.list_posts2),
+    path('users/login/', users_views.login_view)
 ]
